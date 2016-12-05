@@ -14,12 +14,14 @@
 *{
     margin: 0;
     padding: 0;
+    z-index: 0;
 }
 
 #colors{
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
+    z-index: 1;
     
     .color{
         width: 30px;
@@ -53,7 +55,8 @@
     height: auto;
     background: url('img/background.jpg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top center;
+    background-size: cover;
     
     .content{
         @include make-row();
@@ -94,9 +97,15 @@
             
             .btn{
                 margin: 10px 0 0 0;
-                background-color: $background;
+//                background-color: $background;
+                background: $background; /* For browsers that do not support gradients */
+                background: -webkit-linear-gradient($gradient, $background); /* For Safari 5.1 to 6.0 */
+                background: -o-linear-gradient($gradient, $background); /* For Opera 11.1 to 12.0 */
+                background: -moz-linear-gradient($gradient, $background); /* For Firefox 3.6 to 15 */
+                background: linear-gradient($gradient, $background); /* Standard syntax */
                 color: $text;
                 font-weight: bold;
+                border: 2px solid $background;
             }
         }
     }
@@ -180,7 +189,7 @@
         a{
             display: inline-block;
             width: 172px;
-            margin: 10vh 0 0 0;
+            margin: 0;
         }
         
         p{
@@ -204,12 +213,13 @@
                 input{
                     height: 50px;
                     line-height: 15px;
+                    
                 }
 
                 .btn{
                     @include make-md-column(4);
                     @include make-sm-column(4);
-                    margin: 0;
+                    margin: 0 0 0 -5px;
                     white-space: normal;
                 }
 
@@ -296,11 +306,13 @@
                 input{
                     height: 50px;
                     line-height: 15px;
+//                    margin-left: -5px;
+                    
                 }
 
                 .btn{
                     @include make-xs-column(4);
-                    margin: 0;
+                    margin: 0 0 0 -5px;
                     white-space: normal;
                 }
 
@@ -324,6 +336,13 @@
                 }
             }
         }
+    }
+}
+
+@media (min-height:930px) and (min-width:769px){
+    footer{
+        position: absolute;
+        bottom: 0;
     }
 }
 
@@ -353,6 +372,7 @@
 @media (min-width: 768px) and (max-width: 992px) and (orientation:portrait){
     .top{
         background-size: cover;
+        background-position: top center;
     }
 }
 
